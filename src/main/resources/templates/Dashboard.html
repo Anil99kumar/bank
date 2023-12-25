@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Banking Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        /* Add your custom styles here */
+
+        /* Adjust sidebar style */
+        .list-group-item:hover {
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Banking Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/customers/transactions" onclick="showContent('home')">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers/withdraw" onclick="showContent('accounts')">Withdraw</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers/deposit" onclick="showContent('deposit')">Deposit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showContent('profile')">Profile</a>
+            </li>
+            <li class="nav-item">
+
+                <a class="nav-link" href="/customers/logout" onclick="showContent('logout')">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar -->
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" onclick="showContent('accounts')">Accounts</li>
+                                                <li class="list-group-item" onclick="showContent('withdraw')">Withdraw</li>
+                                                                        <li class="list-group-item" onclick="showContent('deposit')">Deposit</li>
+
+
+                        <li class="list-group-item" onclick="showContent('transactions')">Transactions</li>
+                        <li class="list-group-item" onclick="showContent('payments')">Payments</li>
+                        <li class="list-group-item" onclick="showContent('settings')">Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" id="main-content">
+            <!-- Main Content Area -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Welcome to Your Dashboard</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Initial content -->
+                    <p>Dashboard content goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function showContent(contentName) {
+        var contentUrl = getContentUrl(contentName);
+        if (contentUrl) {
+            $('#main-content').load(contentUrl);
+        }
+    }
+
+    function getContentUrl(contentName) {
+        // Map content names to their corresponding URLs
+        var contentUrls = {
+            'home': 'home_content.html',
+            'deposit':'deposit',
+           'withdraw':'withdraw',
+            'accounts': 'register',
+            'transactions': 'transactions',
+            'profile': 'profile_content.html',
+            'logout': 'logout_content.html'
+        };
+        return contentUrls[contentName];
+    }
+</script>
+
+</body>
+</html>
